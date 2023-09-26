@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tutorial/input_phone_number.dart';
+
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: InputPhoneNumber(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -43,35 +44,31 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Center(
-          child: Column(
+        body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SvgPicture.asset('assets/vectors/ic_arrow_left.svg'),
-              ),
-              Center(
+                padding: const EdgeInsets.only(
+                  top: 25,
+                  bottom: 20
+                  ),
                 child: Image.asset('assets/images/img_background.png')
               ),
-              const SizedBox(height: 20),
+              Spacer(),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 48.0),
                 child: Text(
                   "Connect easily with your family "
                   "and friends over countries",
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF0F1828),
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 20),
+              const Spacer(),
               const Text(
                 "Terms & Privacy Policy",
                 style: TextStyle(
@@ -80,10 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Color(0xFF0F1828),
                 ),
               ),
-              const SizedBox(height: 16),
               Container(
+                margin: const EdgeInsets.only(
+                  top: 11,
+                  bottom: 10,
+                ),
                 height: 52,
-                width: 327,
+                width: 300,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   color: const Color(0xFF002DE3),
@@ -97,6 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-        ));
+        );
   }
 }
