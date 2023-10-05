@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial/input_phone_number.dart';
+import 'package:flutter_tutorial/home_chat_screen.dart';
+
 
 
 void main(List<String> args) {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: InputPhoneNumber(),
+      home: const HomeChatScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
