@@ -1,7 +1,7 @@
+// ignore: unnecessary_import
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_tutorial/ContactScreen.dart';
 import 'package:flutter_tutorial/chat_screen.dart';
 import 'package:flutter_tutorial/dot_widget.dart';
 import 'package:flutter_tutorial/home_chat_screen.dart';
@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final PageController controller = PageController();
+  // ignore: unused_field
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     Text('Search Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         controller: controller,
         children: const <Widget>[
           HomeChatScreen(),
-          ChatScrenn(),
+          ChatScreen(),
           MoreScreen(),
         ],
 
@@ -89,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               label: '',
-            ),
+            )
           ],
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,

@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ChatScrenn extends StatefulWidget {
-  const ChatScrenn({super.key});
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
 
   @override
-  State<ChatScrenn> createState() => _ChatScrennState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _ChatScrennState extends State<ChatScrenn> {
+class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

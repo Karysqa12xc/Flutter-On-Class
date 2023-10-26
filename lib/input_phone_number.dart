@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_tutorial/home_chat_screen.dart';
+import 'package:flutter_tutorial/home_screen_2/home_screen2.dart';
 import 'package:flutter_tutorial/home_screens.dart';
 
 class InputPhoneNumber extends StatefulWidget {
@@ -95,7 +95,7 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
                 onTap: () {
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
+                      builder: (context) => const HomeScreen2(),
                     ),
                     (Route<dynamic> route) => false,
                   );
