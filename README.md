@@ -6,4 +6,6 @@
 
 Đây là project sử dụng để học tập flutter cơ bản
 
+Lệnh chạy build_runner
+`flutter pub run build_runner build --delete-conflicting-outputs`
 

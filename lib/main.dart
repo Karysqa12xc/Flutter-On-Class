@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/home_chat_screen.dart';
+import 'package:flutter_tutorial/home_screen_2/home_screen2.dart';
 import 'package:flutter_tutorial/home_screens.dart';
 import 'package:flutter_tutorial/input_phone_number.dart';
+import 'package:flutter_tutorial/service/isar_service.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -34,14 +36,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // ignore: unused_field
-  int _counter = 0;
+  @override
+  void initState() {
+    _initialPage();
+    super.initState();
+  }
 
-  // ignore: unused_element
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void _initialPage() async {
+    await Future.delayed(const Duration(seconds: 3));
+    final isarService = IsarService();
+    final phones = await isarService.getAllPhoneNumbers();
+    if (phones.isNotEmpty) {
+      if (context.mounted) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen2(),
+          ),
+        );
+      }
+    } else {
+      if (context.mounted) {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const InputPhoneNumber(),
+        ));
+      }
+    }
   }
 
   @override
@@ -77,13 +96,24 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           InkWell(
-            onTap: () {
-              print("Hi Nam ");
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const InputPhoneNumber(),
-                ),
-              );
+            onTap: () async {
+              // final isarService = IsarService();
+              // final phones = await isarService.getAllPhoneNumbers();
+              // if (phones.isNotEmpty) {
+              //   if (context.mounted) {
+              //     Navigator.of(context).push(
+              //       MaterialPageRoute(
+              //         builder: (context) => const HomeScreen2(),
+              //       ),
+              //     );
+              //   }
+              // } else {
+              //   if (context.mounted) {
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //       builder: (context) => const InputPhoneNumber(),
+              //     ));
+              //   }
+              // }
             },
             child: Container(
               margin: const EdgeInsets.only(

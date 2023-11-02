@@ -11,10 +11,9 @@ class ListContactScreen extends StatefulWidget {
 class _ListContactScreenState extends State<ListContactScreen> {
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
-        body: Container(
-          color: Colors.green,
-        ),
-      );
+    return Scaffold(
+      body: Container(
+         ),
+    );
   }
 }
