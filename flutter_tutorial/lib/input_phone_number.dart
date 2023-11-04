@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tutorial/home_screen_2/home_screen2.dart';
 import 'package:flutter_tutorial/home_screens.dart';
+import 'package:flutter_tutorial/models/phone_number.dart';
 import 'package:flutter_tutorial/models/phone_number_entity.dart';
+import 'package:flutter_tutorial/service/fire_storage_service.dart';
 import 'package:flutter_tutorial/service/isar_service.dart';
 
 class InputPhoneNumber extends StatefulWidget {
@@ -96,20 +98,38 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
               const Spacer(),
               InkWell(
                 onTap: () async {
-                  final isarService = IsarService();
-                  final newPhone = PhoneNumberEntity(
-                    phoneNumber: controller.text,
-                  );
-                  final result = await isarService.createPhoneNumber(newPhone);
-                  if (result) {
+                  //* Use isar
+                  // final isarService = IsarService();
+                  // final newPhone = PhoneNumberEntity(
+                  //   phoneNumber: controller.text,
+                  // );
+                  // final result = await isarService.createPhoneNumber(newPhone);
+                  // if (result) {
+                  //   if (context.mounted) {
+                  //     Navigator.of(context).pushAndRemoveUntil(
+                  //       MaterialPageRoute(
+                  //         builder: (context) => const HomeScreen2(),
+                  //       ),
+                  //       (Route<dynamic> route) => false,
+                  //     );
+                  //   }
+                  // }
+                  //* Use firebase
+                  try {
+                    final fireStorageService = FireStorageService();
+                    final newPhone = PhoneNumber(
+                      phone: controller.text,
+                    );
+                    await fireStorageService.createPhoneNumber(newPhone);
                     if (context.mounted) {
                       Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (context) => const HomeScreen2(),
-                        ),
-                        (Route<dynamic> route) => false,
-                      );
+                          MaterialPageRoute(
+                            builder: (context) => const HomeScreen2(),
+                          ),
+                          (Route<dynamic> route) => false);
                     }
+                  } catch (e) {
+                    print("Loi them data");
                   }
                 },
                 child: Container(

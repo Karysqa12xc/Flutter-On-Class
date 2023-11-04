@@ -1,11 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial/home_chat_screen.dart';
 import 'package:flutter_tutorial/home_screen_2/home_screen2.dart';
-import 'package:flutter_tutorial/home_screens.dart';
 import 'package:flutter_tutorial/input_phone_number.dart';
 import 'package:flutter_tutorial/service/isar_service.dart';
 
-void main(List<String> args) {
+void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -97,23 +98,23 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           InkWell(
             onTap: () async {
-              // final isarService = IsarService();
-              // final phones = await isarService.getAllPhoneNumbers();
-              // if (phones.isNotEmpty) {
-              //   if (context.mounted) {
-              //     Navigator.of(context).push(
-              //       MaterialPageRoute(
-              //         builder: (context) => const HomeScreen2(),
-              //       ),
-              //     );
-              //   }
-              // } else {
-              //   if (context.mounted) {
-              //     Navigator.of(context).push(MaterialPageRoute(
-              //       builder: (context) => const InputPhoneNumber(),
-              //     ));
-              //   }
-              // }
+              final isarService = IsarService();
+              final phones = await isarService.getAllPhoneNumbers();
+              if (phones.isNotEmpty) {
+                if (context.mounted) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen2(),
+                    ),
+                  );
+                }
+              } else {
+                if (context.mounted) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const InputPhoneNumber(),
+                  ));
+                }
+              }
             },
             child: Container(
               margin: const EdgeInsets.only(

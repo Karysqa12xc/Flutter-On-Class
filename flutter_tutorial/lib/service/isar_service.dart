@@ -42,7 +42,7 @@ class IsarService {
       await isar.writeTxn(() async {
         await isar.phoneNumberEntities.delete(phoneNumber.id);
       });
-      
+
       return true;
     } catch (e) {
       return false;
