@@ -80,6 +80,7 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
                           vertical: 4,
                         ),
                         child: TextFormField(
+                          controller: controller,
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             hintText: "Phone Number",

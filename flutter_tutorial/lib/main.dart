@@ -1,8 +1,11 @@
+import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/home_screen_2/home_screen2.dart';
 import 'package:flutter_tutorial/input_phone_number.dart';
 import 'package:flutter_tutorial/service/isar_service.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage(
+      home: const MyHomePage(
         title: "Home Page",
       ),
       debugShowCheckedModeBanner: false,
@@ -62,6 +65,19 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
       }
     }
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (Platform.isIOS) {
+        await FirebaseMessaging.instance.requestPermission();
+      } else {
+        await Permission.notification.isDenied.then((value) {
+          if (value) {
+            Permission.notification.request();
+          }
+        });
+      }
+      final deviceToken = await FirebaseMessaging.instance.getToken();
+      debugPrint("Firebase Device Token: \n$deviceToken");
+    });
   }
 
   @override
@@ -73,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
               padding: const EdgeInsets.only(top: 25, bottom: 20),
               child: Image.asset('assets/images/img_background.png')),
-          Spacer(),
+          const Spacer(),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 48.0),
             child: Text(

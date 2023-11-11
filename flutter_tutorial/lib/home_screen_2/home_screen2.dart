@@ -1,5 +1,6 @@
 //* Vẽ UI
 // ignore: unnecessary_import
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,9 +24,20 @@ class _HomeScreen2State extends State<HomeScreen2> {
   @override
   void initState() {
     _cubit = HomeCubit();
+    _setUpFireBaseMessage();
     super.initState();
   }
 
+  void _setUpFireBaseMessage() {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      if (message.notification != null) {
+        debugPrint("content of firebase: $message");
+        await buildNotificationSnackBar(message);
+      }
+    });
+  }
+
+  Future<void> buildNotificationSnackBar(RemoteMessage? noti) async {}
   @override
   void dispose() {
     controller.dispose();
@@ -127,8 +139,7 @@ class _HomeScreen2State extends State<HomeScreen2> {
                 _cubit.changeTab(index);
                 controller.jumpToPage(index);
               },
-              elevation: 5
-          ),
+              elevation: 5),
         );
       }),
     );
