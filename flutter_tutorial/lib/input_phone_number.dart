@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tutorial/home_screen_2/home_screen2.dart';
-import 'package:flutter_tutorial/home_screens.dart';
 import 'package:flutter_tutorial/models/phone_number.dart';
-import 'package:flutter_tutorial/models/phone_number_entity.dart';
 import 'package:flutter_tutorial/service/fire_storage_service.dart';
-import 'package:flutter_tutorial/service/isar_service.dart';
 
 class InputPhoneNumber extends StatefulWidget {
   const InputPhoneNumber({Key? key}) : super(key: key);
@@ -191,7 +188,8 @@ Widget build(BuildContext context) {
                   Container(
                     color: Colors.yellow,
                     child: const Text(
-                      "Enter your Phone Number",
+                      "Enter your Phone Number"
+                      "HAhAHA",
                       style: TextStyle(
                           color: Color(0xFF0F1829),
                           fontSize: 28,
